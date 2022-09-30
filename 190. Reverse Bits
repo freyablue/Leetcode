@@ -1,0 +1,11 @@
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        # s = bin(n)
+        s = ""
+        a = 0   
+        for i in range(32):
+            a = n%2
+            s = s+str(a)
+            n=n//2
+        
+        return int(s,2)
