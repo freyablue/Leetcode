@@ -1,0 +1,7 @@
+class Solution:
+    def isPowerOfFour(self, n: int) -> bool:
+        s = str(bin(n))[2:]
+        l = [pos for pos,char in enumerate(s) if char =='1']
+        if n>0 and len(l)==1 and (len(s)-l[0])%2==1:
+            return True
+        return False
