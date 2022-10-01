@@ -1,0 +1,12 @@
+#this is a concise solution
+class Solution:
+    def diffWaysToCompute(self, expression: str) -> List[int]:
+        ret = []
+        for i, c in enumerate(expression):
+            if c in '*-+':
+                l = self.diffWaysToCompute(expression[:i])
+                r = self.diffWaysToCompute(expression[i+1:])
+                ret.extend(eval(str(x)+c+str(y)) for x in l for y in r)
+        if len(ret)==0:
+            ret = [int(expression)]
+        return ret
