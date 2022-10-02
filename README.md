@@ -1,3 +1,3 @@
 # Leetcode
-
-This place records leetcode problems & solutions
+ 
+This page records my leetcode problems & solutions :)
