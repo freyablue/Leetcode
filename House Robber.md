@@ -50,4 +50,35 @@ The thief has found himself a new place for his thievery again. There is only on
 Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that all houses in this place form a binary tree. It will automatically contact the police if two directly-linked houses were broken into on the same night.
 
 Given the root of the binary tree, return the maximum amount of money the thief can rob without alerting the police.
-        
+
+````
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rob(self, root: TreeNode) -> int:
+        return max(self.dfs(root))
+    
+    def dfs(self, root: TreeNode):
+        if root == None:
+            return (0, 0)
+        l = self.dfs(root.left)
+        # print(root)
+        r = self.dfs(root.right)
+        return (root.val + l[1] + r[1], max(l[0], l[1]) + max(r[0], r[1]))
+
+"""
+    Input: [3,4,5,1,3,null,1]
+ input tree            dp tree:
+     3                  [3+3+1,4+5]
+    / \                /        \
+   4   5            [4,3]      [5,1]
+  / \   \          /     \          \
+ 1   2   1      [1,0]    [2,0]     [1,0]
+                / \       /  \        /  \
+           [0,0] [0,0] [0,0] [0,0]  [0,0] [0,0]
+    
+"""        
