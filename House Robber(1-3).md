@@ -85,8 +85,9 @@ class Solution:
 """   
 ````
 
-#### Solution 2 in discussion
+##### Solution 2 in discussion
 
+````
 class Solution:
     
     def rob(self, root):
