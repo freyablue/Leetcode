@@ -26,7 +26,31 @@ class Solution:
                         # print((i,j),c[i][j])
                 return c[n-1][m-1]
 ````
+#### 63. Unique Paths II(Medium)
 
+The only thing that differents to 62 is obstacle
+
+An obstacle and space are marked as 1 or 0 respectively in grid. A path that the robot takes cannot include any square that is an obstacle.
+
+````
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:        
+        r,c = len(obstacleGrid), len(obstacleGrid[0])
+        count = [[0 for i in range(c)] for j in range(r)]
+        s1,s2 = 0,0
+        for i in range(c):
+            if obstacleGrid[0][i]==1: s1 = 1
+            count[0][i] = 1 if s1==0 else 0
+        for j in range(r):
+            if obstacleGrid[j][0]==1: s2 = 1
+            count[j][0] = 1 if s2==0 else 0
+        if c<=1 or r<=1:
+            return count[-1][-1]
+        for i in range(1,r):
+            for j in range(1,c):
+                count[i][j] = count[i-1][j]+count[i][j-1] if obstacleGrid[i][j]==0 else 0
+        return count[-1][-1]
+````
 #### 64. Minimum Path Sum (Medium)
 
 Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right, which minimizes the sum of all numbers along its path.
