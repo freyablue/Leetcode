@@ -78,3 +78,26 @@ class Solution:
         self.invertTree(root.right)
         return root
 ````
+#### 617. Merge Two Binary Trees (Easy)
+You are given two binary trees root1 and root2.
+
+Imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not. You need to merge the two trees into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of the new tree.
+
+Return the merged tree.
+
+````
+class Solution:
+    def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
+        ans = TreeNode(0)
+        if not root1 and not root2:
+            return None
+        elif not root1:
+            return root2
+        elif not root2:
+            return root1
+        else:
+            ans.val = root1.val+root2.val
+        ans.left = self.mergeTrees(root1.left,root2.left)
+        ans.right = self.mergeTrees(root1.right,root2.right)
+        return ans
+````
