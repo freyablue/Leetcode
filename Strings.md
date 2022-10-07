@@ -35,3 +35,23 @@ class Solution:
             curr = symbols[i][1]
         return s
 ````
+
+#### 13. Roman to Integer(easy)
+
+````
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        symbols = {'M':1000,'CM':900,'D':500,'CD':400,'C':100,'XC':90,'L':50,'XL':40,'X':10,'IX':9,'V':5,'IV':4,'I':1}
+        result = 0
+        string = ""
+        i = 0
+        while i<len(s):
+            string = str(s[i])+str(s[i+1]) if i<len(s)-1 else ""
+            if string in symbols:
+                result = result+symbols[string]
+                i+=2
+            else:
+                result = result+symbols[str(s[i])]
+                i+=1
+        return result
+````
